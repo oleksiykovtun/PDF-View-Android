@@ -20,8 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.librelio.task.SafeAsyncTask;
-import com.niveales.wind.R;
+import com.oleksiykovtun.android.pdfview.R;
 
 class PatchInfo {
 	public BitmapHolder bmh;
@@ -183,7 +182,6 @@ public abstract class PageView extends ViewGroup {
 		if (mBusyIndicator == null) {
 			mBusyIndicator = new ProgressBar(mContext);
 			mBusyIndicator.setIndeterminate(true);
-			mBusyIndicator.setBackgroundResource(R.drawable.busy);
 			addView(mBusyIndicator);
 		}
 	}
@@ -243,7 +241,6 @@ public abstract class PageView extends ViewGroup {
 				if (mBusyIndicator == null) {
 					mBusyIndicator = new ProgressBar(mContext);
 					mBusyIndicator.setIndeterminate(true);
-					mBusyIndicator.setBackgroundResource(R.drawable.busy);
 					addView(mBusyIndicator);
 					mBusyIndicator.setVisibility(INVISIBLE);
 					mHandler.postDelayed(new Runnable() {

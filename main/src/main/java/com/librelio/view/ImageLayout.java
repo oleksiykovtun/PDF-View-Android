@@ -23,11 +23,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.librelio.utils.SystemHelper;
-import com.niveales.wind.R;
+import com.oleksiykovtun.android.pdfview.R;
 
 public class ImageLayout extends RelativeLayout {
-
-	protected static final String TAG = "ImageLayout";
 
 	protected ViewPager viewPager;
 
@@ -361,8 +359,5 @@ public class ImageLayout extends RelativeLayout {
 			container.removeView((View) object);
 		}
 
-		public int getSlideCount() {
-			return slidesInfo.count;
-		}
 	}
 }

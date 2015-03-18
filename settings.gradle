@@ -1,1 +1,1 @@
-include ':appiraterAndroid', ':main'
+include ':main', 'example-app'

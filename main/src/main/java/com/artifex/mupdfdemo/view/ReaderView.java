@@ -20,6 +20,7 @@ import android.widget.Scroller;
 
 import com.artifex.mupdfdemo.LinkInfo;
 import com.artifex.mupdfdemo.LinkInfoExternal;
+import com.artifex.mupdfdemo.MuPDFPageAdapter;
 
 public class ReaderView extends AdapterView<Adapter>
                         implements GestureDetector.OnGestureListener,
@@ -593,7 +594,11 @@ public class ReaderView extends AdapterView<Adapter>
 		// layout.
 		post (new Runnable() {
 			public void run () {
-				onSettle(v);
+                try {
+                    onSettle(v);
+                } catch (Throwable e) {
+                    Log.e(TAG, "Cannot update page adapter", e);
+                }
 			}
 		});
 	}

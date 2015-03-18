@@ -8,9 +8,7 @@ import java.util.Map.Entry;
 
 import org.apache.commons.io.FilenameUtils;
 
-import com.librelio.LibrelioApplication;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -174,12 +172,6 @@ public class MuPDFPageView extends PageView {
 			return linkInfo.url;
 		} else if (!linkInfo.isFullScreen()) {
 			runningLinks.add(linkInfo.url);
-		}
-		
-		if (!linkInfo.url.startsWith("buy://") && linkInfo.isPdf()) {
-				final String basePath = mCore.getFileDirectory();
-				String fileName = Uri.parse(uriString).getPath();
-				LibrelioApplication.startPDFActivity(getContext(), basePath + "/" + fileName, FilenameUtils.getBaseName(fileName), false);
 		}
 
 		if (linkInfo.isMediaURI()) {

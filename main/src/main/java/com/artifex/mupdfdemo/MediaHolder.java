@@ -36,11 +36,8 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import android.widget.TextView;
-import android.widget.Toast;
-import com.librelio.activity.SlideShowActivity;
-import com.librelio.activity.VideoActivity;
 import com.librelio.view.ImageLayout;
-import com.niveales.wind.R;
+import com.oleksiykovtun.android.pdfview.R;
 
 /**
  * The class for display all pdf's media-resources
@@ -299,10 +296,6 @@ public class MediaHolder extends FrameLayout implements Callback, OnBufferingUpd
 	}
 
 	protected void onPlayVideoOutside(String path){
-		Intent intent = new Intent(context, VideoActivity.class);
-		intent.putExtra(VIDEO_PATH_KEY, path);
-		intent.putExtra(PLAYBACK_POSITION_KEY, currentPosition);
-		context.startActivity(intent);
 	}
 	
 	protected void onPlaySlideOutside(String basePath) {
@@ -310,15 +303,6 @@ public class MediaHolder extends FrameLayout implements Callback, OnBufferingUpd
 	}
 	
 	protected void onPlaySlideOutside(String basePath, int position) {
-		Log.d(TAG, "onPlaySlideOutside " + basePath + ", linkInfo = " + linkInfo);
-		Intent intent = new Intent(getContext(), SlideShowActivity.class);
-		intent.putExtra(AUTO_PLAY_KEY, autoPlay);
-		intent.putExtra(TRANSITION_KEY, transition);
-		intent.putExtra(BG_COLOR_KEY,bgColor);
-		intent.putExtra(PLAY_DELAY_KEY,autoPlayDelay);
-		intent.putExtra(FULL_PATH_KEY,fullPath);
-		intent.putExtra(INITIAL_SLIDE_POSITION, position);
-		getContext().startActivity(intent);
 	}
 
 	protected void onPlaySlideInside(String basePath) {
@@ -459,10 +443,6 @@ public class MediaHolder extends FrameLayout implements Callback, OnBufferingUpd
 		}
 	}
 
-	/**
-	 * @param pUriString
-	 * @return
-	 */
 	private MediaPlayer getMediaPlayer(String uriString) throws IllegalStateException {
 		return geMediaPlayer(uriString, null);
 	}
@@ -513,7 +493,7 @@ public class MediaHolder extends FrameLayout implements Callback, OnBufferingUpd
 	
 	private void showWaitDialog() {
 		dialog = new ProgressDialog(getContext());
-        dialog.setMessage(getResources().getString(R.string.loading));
+        //dialog.setMessage(getResources().getString(R.string.loading));
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();

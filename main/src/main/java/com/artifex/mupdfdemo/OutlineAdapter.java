@@ -1,7 +1,7 @@
 package com.artifex.mupdfdemo;
 
 
-import com.niveales.wind.R;
+import com.oleksiykovtun.android.pdfview.R;
 
 import android.view.LayoutInflater;
 import android.view.View;

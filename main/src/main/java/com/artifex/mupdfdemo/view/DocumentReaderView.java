@@ -14,8 +14,6 @@ import com.artifex.mupdfdemo.LinkInfoExternal;
 import com.artifex.mupdfdemo.MuPDFPageView;
 import com.artifex.mupdfdemo.PageView;
 import com.artifex.mupdfdemo.domain.SearchTaskResult;
-import com.librelio.activity.SlideShowActivity;
-import com.librelio.activity.WebViewActivity;
 
 public abstract class DocumentReaderView extends ReaderView {
 	private static final String TAG = "DocumentReaderView";
@@ -155,12 +153,7 @@ public abstract class DocumentReaderView extends ReaderView {
 				return;
 			
 			if(path.endsWith("jpg") || path.endsWith("png") || path.endsWith("bmp")) {
-				// start image slideshow
-				Intent intent = new Intent(getContext(), SlideShowActivity.class);
-				intent.putExtra("path", path);
-				intent.putExtra("uri", linkString);
-				Log.d(TAG,"basePath = "+path+"\nuri = "+ linkString);
-				//startActivity(intent);
+
 			}
 			if(path.endsWith("mp4") && isFullScreen) {
 				// start a video player
@@ -171,7 +164,6 @@ public abstract class DocumentReaderView extends ReaderView {
 		} else if(linkString.startsWith("buy://localhost")) {
 			onBuy(uri.getPath().substring(1));
 		} else {
-			WebViewActivity.startWithUrl(getContext(), uri.toString());
 		}
 		
 	}

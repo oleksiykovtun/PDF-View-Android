@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="fitCenter"
-        android:src="@drawable/busy" />
+        android:scaleType="fitCenter" />
 
     <com.librelio.view.AutofitTextView
         android:id="@+id/slideshow_item_text"
@@ -19,8 +18,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="32dp"
-        autofittextview:maxTextSize="32dp"
-        android:text="@string/asset_downloading"
         android:visibility="gone"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"/>

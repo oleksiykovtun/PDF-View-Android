@@ -1,30 +1,73 @@
-## About this app
+# PDF-View-Android
 
-This customizable app is intended mainly for publishers and marketers. It is also available on [iOS](https://github.com/libreliodev/iOS), [Windows 8](https://github.com/libreliodev/windows8) and in [HTML5](https://github.com/libreliodev/javascript).
+A PDF viewing library for Android. Based on https://github.com/libreliodev/android
 
-If you need to publish dynamic and/or paid contents, you need to set up your own server and develop your own code. You can also opt for Librelio's [paid plans](http://www.librelio.com/index.php#pricing).
+Supports 1-page and 2-page PDF viewing in a custom view.
 
-Examples of customized apps published on the app stores are available on www.librelio.com . A good example of iOS app is the [Wind magazine app](https://itunes.apple.com/fr/app/wind-magazine/id433594605?mt=8). 
+## Usage
 
+Put the AAR file `PDF-View-Android-1.1.0.aar` of the library into your module's folder `libs`.
+
+Add
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+and
+
+    dependencies {
+        compile(name:'PDF-View-Android-1.1.0', ext:'aar')
+        compile 'commons-io:commons-io:2.4'
+    }
+
+to your module's `build.gradle` file.
+
+Add
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+to the Android manifest of your module.
+
+Add
+
+    <com.oleksiykovtun.android.pdfview.PdfView
+        android:id="@+id/pdf_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+to your activity layout.
+
+Activity code:
+
+    public class PdfActivity extends Activity {
+
+        private PdfDocument pdfDocument;
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.pdf_activity, null);
+
+            pdfDocument = new PdfDocument(this, "/sdcard/your-pdf-file.pdf");
+            pdfDocument.setOnePageView();
+            ((PdfView) view.findViewById(R.id.pdf_view)).setDocument(pdfDocument);
+
+            setContentView(view);
+        }
+
+    }
+
+See the example app fore a more detailed example.
 
 ## License
+
 This project is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This project is Copyright 2012-2014 Librelio, except included libraries:
-- Copyright 2006-2012 Artifex Software, Inc for the MuPDF library
+- Copyright 2006-2012 Artifex Software, Inc for the MuPDF library (http://www.mupdf.com)
 - Copyright Free Beachler (http://www.freebeachler.com) for the Android P-List Parser library
 - Copyright (c) 2011 Mats Hofman for the Android RSS reader library
 - Copyright 2011-2013 sbstrm. Copyright 2014 drewjw81 for the Appirater Android library
-
-The use of the Google Analytics library is governed by the following terms: http://www.google.com/analytics/tos.html
-
-
-
-## Source code of libraries used
-- MuPDF: http://www.mupdf.com
-- Android P-List Parser: https://github.com/tenaciousRas/android-plist-parser
-- Android RSS reader library: https://github.com/matshofman/Android-RSS-Reader-Library
-- Appiarater Android: https://github.com/drewjw81/appirater-android
-
-## Documentation
-The documentation is available in the [Wiki](https://github.com/libreliodev/android/wiki)
