@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import com.artifex.mupdfdemo.LinkInfo;
 import com.artifex.mupdfdemo.LinkInfoExternal;
 import com.artifex.mupdfdemo.MuPDFPageView;
 import com.artifex.mupdfdemo.PageView;
@@ -142,29 +141,10 @@ public abstract class DocumentReaderView extends ReaderView {
 		Log.d(TAG, "!openLink " + linkString);
 		Uri uri = Uri.parse(linkString);
 		String warect = uri.getQueryParameter("warect");
-		Boolean isFullScreen = warect != null && warect.equals("full");
-		if(linkString.startsWith("http://localhost/")) {
-			// display local content
-			
-			// get the current page view
-			String path = uri.getPath();
-			Log.d(TAG, "localhost path = " + path);
-			if(path == null)
-				return;
-			
-			if(path.endsWith("jpg") || path.endsWith("png") || path.endsWith("bmp")) {
-
-			}
-			if(path.endsWith("mp4") && isFullScreen) {
-				// start a video player
-				//Uri videoUri = Uri.parse("file://" + getStoragePath() + "/wind_355" + path);
-				//Intent intent = new Intent(Intent.ACTION_VIEW, videoUri);
-				//startActivity(intent);
-			}
-		} else if(linkString.startsWith("buy://localhost")) {
-			onBuy(uri.getPath().substring(1));
-		} else {
-		}
-		
+		if(linkString.startsWith("http://") || linkString.startsWith("http://")) {
+            Uri videoUri = Uri.parse(linkString);
+            Intent intent = new Intent(Intent.ACTION_VIEW, videoUri);
+            getContext().startActivity(intent);
+        }
 	}
 }

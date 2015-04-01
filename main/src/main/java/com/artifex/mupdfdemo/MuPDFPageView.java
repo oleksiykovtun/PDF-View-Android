@@ -6,15 +6,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.io.FilenameUtils;
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
-import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -136,9 +132,13 @@ public class MuPDFPageView extends PageView {
 	}
 
 	public String hitLinkUri(float x, float y) {
-		float scale = mSourceScale * (float) getWidth() / (float) mSize.x;
-		float docRelX = (x - getLeft()) / scale;
-		float docRelY = (y - getTop()) / scale;
+        // todo debug link coordinates shifted 1 page width right for 1st page in "magazine view"
+        if (mCore.getDisplayPages() == 2 && getPage() == 0) {
+            return null;
+        }
+        float scale = mSourceScale * (float) getWidth() / (float) mSize.x;
+        float docRelX = (x - getLeft()) / scale;
+        float docRelY = (y - getTop()) / scale;
 
 		String uriString = null;
 		if (mLinks == null)
